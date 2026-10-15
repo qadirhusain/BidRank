@@ -1,0 +1,6 @@
+server:
+  port: ${SERVER_PORT}
+
+services:
+  product:
+    base-url: ${PRODUCT_BASE_URL}

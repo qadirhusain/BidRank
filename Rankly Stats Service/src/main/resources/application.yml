@@ -1,0 +1,26 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+services:
+  product:
+    base-url: ${PRODUCT_BASE_URL}
+  category:
+    base-url: ${CATEGORY_BASE_URL}
+  activity:
+    base-url: ${ACTIVITY_BASE_URL}
+
+stats:
+  zone: ${STATS_ZONE}
+  online-window-seconds: ${STATS_ONLINE_WINDOW_SECONDS}
+  cleanup-interval-ms: ${STATS_CLEANUP_INTERVAL_MS}

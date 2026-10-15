@@ -1,0 +1,21 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+services:
+  product:
+    base-url: ${PRODUCT_BASE_URL}
+
+activity:
+  zone: ${ACTIVITY_ZONE}
+  hash-secret: ${ACTIVITY_HASH_SECRET}

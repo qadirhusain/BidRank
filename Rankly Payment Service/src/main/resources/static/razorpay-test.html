@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Razorpay Test Payment</title>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f5f5f5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Razorpay Test Payment</h1>
+
+<p>Amount: ₹499</p>
+
+<button onclick="startPayment()">
+    Pay ₹499
+</button>
+
+<div id="result"></div>
+
+<script>
+
+    function startPayment() {
+
+        const options = {
+
+            key: "rzp_test_ThSPaTCxA5zCJy",
+
+            amount: 49900,
+
+            currency: "INR",
+
+            name: "Rankly",
+
+            description: "Rankly Test Payment",
+
+            order_id: "order_ThTVFo0hYOeRZZ",
+
+            handler: function (response) {
+
+                const result = {
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature
+                };
+
+                document.getElementById("result").textContent =
+                    JSON.stringify(result, null, 2);
+
+                console.log(result);
+            },
+
+            theme: {
+                color: "#3399cc"
+            }
+        };
+
+        const razorpay = new Razorpay(options);
+
+        razorpay.on("payment.failed", function (response) {
+
+            document.getElementById("result").textContent =
+                JSON.stringify(response.error, null, 2);
+
+            console.error(response.error);
+        });
+
+        razorpay.open();
+    }
+
+</script>
+
+</body>
+</html>

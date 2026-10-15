@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: rankly-api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+
+            - id: category-service
+              uri: ${CATEGORY_BASE_URL}
+              predicates:
+                - Path=/api/categories/**
+
+            - id: product-service
+              uri: ${PRODUCT_BASE_URL}
+              predicates:
+                - Path=/api/products/**
+
+            - id: ranking-service
+              uri: ${RANKING_BASE_URL}
+              predicates:
+                - Path=/api/rankings/**
+
+            - id: activity-service
+              uri: ${ACTIVITY_BASE_URL}
+              predicates:
+                - Path=/api/activity/**
+
+            - id: stats-service
+              uri: ${STATS_BASE_URL}
+              predicates:
+                - Path=/api/stats/**
+
+            - id: search-service
+              uri: ${SEARCH_BASE_URL}
+              predicates:
+                - Path=/api/search/**
+
+            - id: submission-service
+              uri: ${SUBMISSION_BASE_URL}
+              predicates:
+                - Path=/api/submissions/**
+
+            - id: payment-service
+              uri: ${PAYMENT_BASE_URL}
+              predicates:
+                - Path=/api/payments/**
+
+server:
+  port: ${SERVER_PORT}
